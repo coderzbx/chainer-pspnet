@@ -3,8 +3,6 @@
 import matplotlib
 matplotlib.use('Agg')
 
-#test
-
 import argparse
 import os
 

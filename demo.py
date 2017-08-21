@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import matplotlib
+matplotlib.use('Agg')
+
+#test
 
 import argparse
 import os

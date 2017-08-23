@@ -128,12 +128,12 @@ class PSPNetHandler(tornado.web.RequestHandler):
                 raise PSPException(1)
 
             psp_net = ModelPSPNet(model)
-            with open('upload.jpg', 'wb') as f:
-                f.write(image)
+            # with open('upload.jpg', 'wb') as f:
+            #     f.write(image)
             predict_data = psp_net.do(image_data=image)
 
-            with open('upload.png', 'wb') as f1:
-                f1.write(predict_data)
+            # with open('upload.png', 'wb') as f1:
+            #     f1.write(predict_data)
 
             self.set_header('Content-type', 'image/png')
             self.write(base64.b64encode(predict_data))

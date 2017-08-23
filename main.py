@@ -1,5 +1,3 @@
-import matplotlib
-matplotlib.use('Agg')
 
 import tornado.ioloop
 import tornado.web
@@ -129,16 +127,16 @@ class PSPNetHandler(tornado.web.RequestHandler):
             if not valid:
                 raise PSPException(1)
 
-            pspnet = ModelPSPNet(model)
+            psp_net = ModelPSPNet(model)
             with open('upload.jpg', 'wb') as f:
                 f.write(image)
-            pred_data = pspnet.do(image_data=image)
+            predict_data = psp_net.do(image_data=image)
 
             with open('upload.png', 'wb') as f1:
-                f1.write(pred_data)
+                f1.write(predict_data)
 
             self.set_header('Content-type', 'image/png')
-            self.write(base64.b64encode(pred_data))
+            self.write(base64.b64encode(predict_data))
 
         except PSPException as e:
             self.set_header('Content-type', 'application/json')
@@ -155,8 +153,8 @@ class PSPNetHandler(tornado.web.RequestHandler):
 
 
 def make_app():
-    server_info = ServerInfo()
-    context = server_info.context
+    info = ServerInfo()
+    context = info.context
     uri = r"/{}".format(context)
     uri_image = r"/{}/{}".format(context, 'image')
     uri_information = r"/{}/{}".format(context, 'information')

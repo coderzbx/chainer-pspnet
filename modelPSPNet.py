@@ -1,21 +1,14 @@
-import matplotlib
-matplotlib.use('Agg')
-
-import os
+# import matplotlib
+# matplotlib.use('Agg')
 
 # from io import StringIO
 import io as StringIO
 
 import chainer
-import matplotlib.pyplot as plot
 import numpy as np
 from chainer import serializers
 from chainercv.datasets import voc_semantic_segmentation_label_colors
 from chainercv.datasets import voc_semantic_segmentation_label_names
-from chainercv.utils import read_image
-from chainercv.visualizations import vis_image
-from chainercv.visualizations import vis_label
-from skimage import io
 
 from datasets import cityscapes_label_colors
 from datasets import cityscapes_label_names
@@ -25,6 +18,7 @@ from evaluate import preprocess
 
 from pspnet import PSPNet
 from PIL import Image
+
 
 class ModelPSPNet:
     def __init__(self, model):
@@ -75,7 +69,8 @@ class ModelPSPNet:
             self.base_size = 512
             self.crop_size = 473
 
-    def load_image(self, image_data):
+    @staticmethod
+    def load_image(image_data):
         f = StringIO.BytesIO(image_data)
         image = Image.open(f)
         if image.mode not in ('L', 'RGB'):
@@ -97,7 +92,7 @@ class ModelPSPNet:
             chainer.cuda.get_device_from_id(self.gpu).use()
             model.to_gpu(self.gpu)
 
-        img = preprocess(self.load_image(image_data))
+        img = preprocess(self.load_image(image_data=image_data))
 
         # Inference
         pred = inference(

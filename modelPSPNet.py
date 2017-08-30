@@ -10,9 +10,9 @@ from chainer import serializers
 from chainercv.datasets import voc_semantic_segmentation_label_colors
 from chainercv.datasets import voc_semantic_segmentation_label_names
 
-from datasets import cityscapes_label_colors
-from datasets import cityscapes_label_names
-from datasets import cityscapes_labels
+from datasets.cityscapes.cityscapes_utils import cityscapes_label_colors
+from datasets.cityscapes.cityscapes_utils import cityscapes_label_names
+from datasets.cityscapes.cityscapes_utils import cityscapes_labels
 from evaluate import inference
 from evaluate import preprocess
 

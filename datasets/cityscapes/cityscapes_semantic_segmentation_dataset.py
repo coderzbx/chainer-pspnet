@@ -5,7 +5,7 @@ import numpy as np
 from chainer import dataset
 from chainercv.utils import read_image
 
-from datasets import cityscapes_labels
+from datasets.cityscapes.cityscapes_utils import cityscapes_labels
 
 
 class CityscapesSemanticSegmentationDataset(dataset.DatasetMixin):

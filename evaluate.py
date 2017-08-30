@@ -16,9 +16,9 @@ from chainer.datasets import TransformDataset
 from chainercv import transforms
 from skimage import io
 
-from datasets import cityscapes_labels
-from datasets import CityscapesSemanticSegmentationDataset
-from datasets import VOCSemanticSegmentationDataset
+from datasets.cityscapes.cityscapes_utils import cityscapes_labels
+from datasets.cityscapes.cityscapes_semantic_segmentation_dataset import CityscapesSemanticSegmentationDataset
+from datasets.voc.voc_semantic_segmentation_dataset import VOCSemanticSegmentationDataset
 from pspnet import PSPNet
 from tqdm import tqdm
 

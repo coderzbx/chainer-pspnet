@@ -7,7 +7,7 @@ import base64
 from conf.config import ServerInfo
 from modelPSPNet import ModelPSPNet
 
-from datasets import cityscapes_labels
+from datasets.cityscapes.cityscapes_utils import cityscapes_labels
 
 
 class PSPException(Exception):

@@ -17,9 +17,9 @@ from chainercv.visualizations import vis_image
 from chainercv.visualizations import vis_label
 from skimage import io
 
-from datasets import cityscapes_label_colors
-from datasets import cityscapes_label_names
-from datasets import cityscapes_labels
+from datasets.cityscapes.cityscapes_utils import cityscapes_label_colors
+from datasets.cityscapes.cityscapes_utils import cityscapes_label_names
+from datasets.cityscapes.cityscapes_utils import cityscapes_labels
 from evaluate import inference
 from evaluate import preprocess
 from pspnet import PSPNet

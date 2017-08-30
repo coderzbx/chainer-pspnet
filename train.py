@@ -491,6 +491,8 @@ def get_trainer(args):
 
 
 if __name__ == '__main__':
+    os.environ["CUDA_VISIBLE_DEVICES"] = '2'
+
     parser = argparse.ArgumentParser(description='ChainerCMD')
     parser.add_argument('config', type=str)
     parser.add_argument('--gpu', action='store_true')

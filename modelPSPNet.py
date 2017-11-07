@@ -69,6 +69,12 @@ class ModelPSPNet:
             self.base_size = 512
             self.crop_size = 473
 
+        self.net = PSPNet(self.n_class, self.n_blocks, self.feat_size, mid_stride=self.mid_stride)
+        serializers.load_npz(self.param_fn, self.net)
+        if self.gpu >= 0:
+            chainer.cuda.get_device_from_id(self.gpu).use()
+            self.net.to_gpu(self.gpu)
+
     @staticmethod
     def load_image(image_data):
         f = StringIO.BytesIO(image_data)
@@ -86,17 +92,11 @@ class ModelPSPNet:
             return image.transpose(2, 0, 1)
 
     def do(self, image_data):
-        model = PSPNet(self.n_class, self.n_blocks, self.feat_size, mid_stride=self.mid_stride)
-        serializers.load_npz(self.param_fn, model)
-        if self.gpu >= 0:
-            chainer.cuda.get_device_from_id(self.gpu).use()
-            model.to_gpu(self.gpu)
-
         img = preprocess(self.load_image(image_data=image_data))
 
         # Inference
         pred = inference(
-            model, self.n_class, self.base_size, self.crop_size, img, self.scales)
+            self.net, self.n_class, self.base_size, self.crop_size, img, self.scales)
 
         # Save the result image
         # ax = vis_image(img)

@@ -80,6 +80,8 @@ if __name__ == '__main__':
     pred = inference(
         model, n_class, base_size, crop_size, img, args.scales)
 
+    # release gpu memory
+
     # Save the result image
     ax = vis_image(img)
     _, legend_handles = vis_label(pred, labels, colors, alpha=1.0, ax=ax)
